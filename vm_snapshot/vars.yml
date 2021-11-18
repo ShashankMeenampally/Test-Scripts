@@ -1,0 +1,9 @@
+## Update your ENT 5 ID credentials
+## Update patching change number
+## Update action: [create|remove|view]
+
+
+vcenter_username: **your ENT 5 ID here**
+vcenter_password: **your password here**
+change_number: **snapshot name**
+snapshot_action: [create|remove|view]

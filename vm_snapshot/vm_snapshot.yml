@@ -1,0 +1,54 @@
+---
+- name: Create VM snapshot
+  hosts: ~.*:!ungrouped
+  gather_facts: no
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+  - name: Gather VM info
+    vmware_guest_info:
+      validate_certs: False
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter_name }}"
+      name: "{{ inventory_hostname }}"
+    delegate_to: localhost
+    register: vm_info
+
+  - name: Create a snapshot
+    vmware_guest_snapshot:
+      validate_certs: False
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter_name }}"
+      folder: "{{ vm_info.instance.hw_folder }}"
+      name: "{{ inventory_hostname }}"
+      state: present
+      snapshot_name: "{{ change_number }}"
+      description: Prepatch snapshot
+    delegate_to: localhost
+    when: snapshot_action == "create"
+
+  - name: Remove a snapshot
+    vmware_guest_snapshot:
+      validate_certs: False
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter_name }}"
+      folder: "{{ vm_info.instance.hw_folder }}"
+      name: "{{ inventory_hostname }}"
+      state: absent
+      snapshot_name: "{{ change_number }}"
+    delegate_to: localhost
+    when: snapshot_action == "remove"
+
+  - name: List snapshots
+    debug:
+      var: vm_info.instance.current_snapshot.creation_time
+    when: snapshot_action == "view"

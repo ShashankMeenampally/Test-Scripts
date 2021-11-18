@@ -1,0 +1,28 @@
+## README file for VM snapshot management using Ansible. 
+## The playbook can help orchestrate VM creation/deletion tasks pre/post patching activity
+
+
+## FILES ##
+# vm_snapshot_inventory --> inventory file
+# vm_snapshot.yml       --> playbook to run
+# vars.yml              --> variable file
+
+## Inventory file ##
+# Add the server names in sections based on the vcenter 
+
+## Vars file ##
+# Update the username and password variable
+# Update the patching change number
+# Update the action (create, remove or view snapshot)
+
+# Sample vars:
+# vcenter_username: ent\pa_shoms5
+# vcenter_password: \x4tf~W/@-xkUpuB
+# change_number: CHG000001
+# snapshot_action: remove
+
+## command to execute ##
+
+# ansible-playbook vm_snapshot.yml -i vm_snapshot_inventory --limit <hostgroup>
+
+# where hostgroup is one of HOU1|HOU2|HOU2-ORACLE-WLC|MGP1|POS1|SHE1|YXE

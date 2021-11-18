@@ -1,0 +1,53 @@
+## ADD THE VM NAMES BASED ON DATACENTER
+## HOU1 --> STREAM DC (HOU1PVCS01)
+## HOU2 --> COW DC (HOU2PVCS01)
+## HOU2-ORACLE-WLC --> COW DC Oasis servers (HOU2PVCS06)
+## MGP1 --> Macedon Gas Plant (MGP0PVCS02)
+## POS1 --> Port of Spain (POS0PVCS02)
+## SHE1 --> Shenzi Platform (SHE0PVCS02)
+## YXE --> Saskatoon (YXE0EPVCS01)
+
+[HOU1]
+
+[HOU2]
+phoupadsapl03
+
+[HOU2-ORACLE-WLC]
+
+[MGP1]
+
+[POS1]
+
+[SHE1]
+
+[YXE]
+
+##DO NOT EDIT BELOW##
+
+[HOU1:vars]
+vcenter_hostname=hou1pvcs01
+datacenter_name=HOU1
+
+[HOU2:vars]
+vcenter_hostname=hou2pvcs01
+datacenter_name=HOU2
+
+[HOU2-ORACLE-WLC:vars]
+vcenter_hostname=hou2pvcs06
+datacenter_name=HOU2-ORACLE-WLC
+
+[MGP1:vars]
+vcenter_hostname=mgp0pvcs02
+datacenter_name=MGP1
+
+[POS1:vars]
+vcenter_hostname=pos0pvcs02
+datacenter_name=POS1
+
+[SHE1:vars]
+vcenter_hostname=she0pvcs02
+datacenter_name=SHE1
+
+[YXE:vars]
+vcenter_hostname=yxe0epvcs01
+datacenter_name=YXE
